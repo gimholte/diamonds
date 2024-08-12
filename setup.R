@@ -1,0 +1,5 @@
+use_description()
+use_package('ggplot2')
+use_package('lubridate')
+use_github_action(url = "https://github.com/posit-conf-2024/r-in-production/blob/main/render-rmd.yaml")
+usethis::use_github_pages()

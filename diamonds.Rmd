@@ -1,0 +1,30 @@
+---
+title: "Diamonds!"
+author: "Gregory Imholte"
+date: "2024-08-12"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+```{r diamonds}
+library(ggplot2)
+library(lubridate)
+dia <- ggplot2::diamonds
+```
+
+## Diamonds!
+
+Embedded plot:
+
+```{r}
+now_ts <- timestamp(prefix = NULL, suffix = NULL)
+dia |> 
+  ggplot(aes(x = carat, y = log(price), colour = cut)) +
+  geom_smooth(se = FALSE) +
+  ggtitle(paste("Diamonds as of", now_ts))
+```
+
