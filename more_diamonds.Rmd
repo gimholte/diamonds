@@ -1,5 +1,5 @@
 ---
-title: "Diamonds!"
+title: "Diamonds, Also"
 author: "Gregory Imholte"
 date: "2024-08-12"
 output: html_document
@@ -10,9 +10,11 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 
-```{r diamonds}
+```{r diamonds, echo = FALSE, message = FALSE}
 library(ggplot2)
 library(lubridate)
+library(dplyr)
+
 dia <- ggplot2::diamonds
 ```
 
@@ -22,12 +24,11 @@ Embedded plot:
 
 ```{r}
 now_ts <- timestamp(prefix = NULL, suffix = NULL)
+
 dia |> 
-  ggplot(aes(x = carat, y = log(price), colour = cut)) +
-  geom_smooth(se = FALSE) +
+  summarize(total_dollars = sum(price), .by = clarity) |>
+  ggplot(aes(x = clarity, y = log(total_dollars))) +
+  geom_col() +
   ggtitle(paste("Diamonds as of", now_ts))
 ```
 
-
-## Another plot
-[Here is another plot!](https://gimholte.github.io/diamonds/morediamonds)

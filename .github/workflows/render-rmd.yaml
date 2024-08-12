@@ -26,6 +26,7 @@ jobs:
       - name: Render Rmarkdown
         shell: Rscript {0}
         run: rmarkdown::render("diamonds.Rmd", output_file = 'index.html', output_dir = "rmd")
+        run: rmarkdown::render("more_diamonds.Rmd", output_file = 'morediamonds.html', output_dir = "rmd")
 
       # Publish rmd/ to GitHub pages
       - name: Publish to GitHub pages 🚀
